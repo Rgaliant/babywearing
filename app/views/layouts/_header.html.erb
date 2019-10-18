@@ -20,6 +20,19 @@
           <a class="nav-link nav-icon nav-third" href="/"><%= image_tag "BW- CART ICON.svg", alt:"Cart" %><p>CHECK IN/OUT</p></a></li>
         <li class="nav-item active background-purple">
           <a class="nav-link nav-icon nav-fourth" href="/"><%= image_tag "BW - INVENTORY ICON.svg", alt:"View Inventory" %><p>CARRIERS</p></a></li>
+          <% if user_signed_in? %>
+            <% if current_user.has_role?(:admin) || current_user.has_role?(:volunteer) %>
+              <li class="nav-item active background-slate members-tile">
+              <%= link_to users_path, class: 'nav-link nav-icon nav-five' do %>
+                <%= image_tag "MEMBERS-ICON.svg", alt:"Add an Item" %><p>VIEW MEMBERS</p>
+              <% end %>
+              </li>
+            <% else %>
+              <div></div>
+            <% end %>
+          <% else %>
+            <div></div>
+          <% end %>
       </ul>
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
