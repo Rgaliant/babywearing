@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :carriers
   resources :photos, only: :destroy
   devise_for :users, controllers: { registrations: "users/registrations" }
+  resources :users, :only => [:edit, :update]
   get 'home/index'
 
   resources :categories
