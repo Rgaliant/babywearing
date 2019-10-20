@@ -56,22 +56,19 @@ RSpec.describe "User" do
   end
 
   scenario 'should allow user who is an admin to see memebers tile on header' do
-    user.add_role :admin
-    sign_in user
+    sign_in admin
     visit root_url
     expect(page).to have_content "VIEW MEMBERS"
   end
 
   scenario 'should allow user who is a volunteer to see memebers tile on header' do
-    user.add_role :volunteer
-    sign_in user
+    sign_in volunteer
     visit root_url
     expect(page).to have_content "VIEW MEMBERS"
   end
 
   scenario 'should not allow user who is a member to see memebers tile on header' do
-    user.add_role :member
-    sign_in user
+    sign_in member
     visit root_url
     expect(page).not_to have_content "VIEW MEMBERS"
   end
