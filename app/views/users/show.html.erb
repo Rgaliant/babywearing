@@ -14,8 +14,8 @@
          
     <tr>
         <td class="p-2"><%= @user.email %></td>
-        <td class="p-2"><%= @user.full_name.split(" ").first %></td>
-        <td class="p-2"><%= @user.full_name.split(" ").last %></td>
+        <td class="p-2"><%= @user.first_name %></td>
+        <td class="p-2"><%= @user.last_name %></td>
         <td class="p-2"><%= Role.find_by(id: @user.role).name %></td>
         <td class="p-2"><a><%= link_to edit_user_path(id: @user.id) %></a></td>
     </tr>

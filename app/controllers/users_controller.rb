@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
   def index
-    @users = User.all
+    @users = User.order(params[:sort])
   end
 
   def show    
@@ -41,6 +41,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :full_name, :street_address, :street_address_second, :city, :state, :postal_code, :phone_number, :role)
+    params.require(:user).permit(:email, :street_address, :street_address_second, :city, :state, :postal_code, :phone_number, :role)
   end
 end

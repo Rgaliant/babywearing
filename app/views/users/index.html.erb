@@ -4,10 +4,10 @@
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Email Address</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Role</th>
+      <th scope="col"><%= link_to "Email Address", :sort => "email" %></th>
+      <th scope="col"><%= link_to "First Name", :sort => "first_name" %></th>
+      <th scope="col"><%= link_to "Last Name", :sort => "last_name" %></th>
+      <th scope="col"></th>
       <th scope="col">Edit</th>
     </tr>
   </thead>
@@ -15,8 +15,8 @@
   <% @users.each do |user| %>              
     <tr>
         <td class="p-2"><%= user.email %></td>
-        <td class="p-2"><%= user.full_name.split(" ").first %></td>
-        <td class="p-2"><%= user.full_name.split(" ").last %></td>
+        <td class="p-2"><%= user.first_name %></td>
+        <td class="p-2"><%= user.last_name %></td>
         <td class="p-2">
         <%= form_with model: user, local: true do |form| %>
           <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] }, onchange: "this.form.submit();" %>          
