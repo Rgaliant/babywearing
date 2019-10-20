@@ -2,12 +2,12 @@
 <h1>User Listing</h1>
 
 <table class="table table-striped">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
-      <th scope="col"><%= link_to "Email Address", :sort => "email" %></th>
-      <th scope="col"><%= link_to "First Name", :sort => "first_name" %></th>
-      <th scope="col"><%= link_to "Last Name", :sort => "last_name" %></th>
-      <th scope="col"></th>
+      <th scope="col" class="sort-header"><%= link_to "Email Address", :sort => "email" %></th>
+      <th scope="col" class="sort-header"><%= link_to "First Name", :sort => "first_name" %></th>
+      <th scope="col" class="sort-header"><%= link_to "Last Name", :sort => "last_name" %></th>
+      <th scope="col">Role</th>
       <th scope="col">Edit</th>
     </tr>
   </thead>
