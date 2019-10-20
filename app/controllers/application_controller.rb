@@ -11,4 +11,14 @@ class ApplicationController < ActionController::Base
    flash[:error] = "Sorry, you aren't allowed to do that. You've been redirected to your previous page instead."
    redirect_to(request.referrer || root_path)
  end
+
+ def authorize_admin
+  return unless current_user.role != 1
+  redirect_to root_path, alert: 'Admins only!'
+  end
+
+  def authorize_volunteer
+    return unless !current_user.role != 2
+    redirect_to root_path, alert: 'Admins only!'
+  end
 end
