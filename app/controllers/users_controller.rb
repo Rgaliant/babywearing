@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  attr_reader :user
+  before_action :set_user, only: [:edit, :update, :show]
   def index
     @users = User.all
   end
@@ -9,14 +9,10 @@ class UsersController < ApplicationController
   def show    
   end
 
-  def new
-    @user = User.new
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user
+      redirect_to '/users'
     else
       render 'new'
     end 
@@ -27,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to '/users'
     else
       render 'edit'
     end
@@ -40,7 +36,11 @@ class UsersController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
-    params.permit(:email, :full_name, :street_address, :street_addres_second, :city, :state, :postal_code, :phone_number)
+    params.require(:user).permit(:email, :full_name, :street_address, :street_address_second, :city, :state, :postal_code, :phone_number, :role)
   end
 end

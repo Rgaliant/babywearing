@@ -22,6 +22,7 @@
           <a class="nav-link nav-icon nav-third" href="/"><%= image_tag "BW- CART ICON.svg", alt:"Cart" %><p>CHECK IN/OUT</p></a></li>
         <li class="nav-item active background-purple">
           <a class="nav-link nav-icon nav-fourth" href="/"><%= image_tag "BW - INVENTORY ICON.svg", alt:"View Inventory" %><p>CARRIERS</p></a></li>
+        <% if user_signed_in? %>
           <% if user_can_add_new_member(current_user) %>
             <li class="nav-item active background-blue members-tile">
               <%= link_to users_path, class: 'nav-link nav-icon nav-five' do %>
@@ -29,6 +30,7 @@
               <% end %>
             </li>
           <% end %>
+        <% end %>
       </ul>
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
