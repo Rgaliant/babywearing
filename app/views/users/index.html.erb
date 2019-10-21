@@ -17,11 +17,15 @@
         <td class="p-2"><%= user.email %></td>
         <td class="p-2"><%= user.first_name %></td>
         <td class="p-2"><%= user.last_name %></td>
+        <% if user_is_admin(current_user) %>
         <td class="p-2">
-        <%= form_with model: user, local: true do |form| %>
-          <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] }, onchange: "this.form.submit();" %>          
-        <% end %>
+          <%= form_with model: user, local: true do |form| %>
+            <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] }, onchange: "this.form.submit();" %>          
+          <% end %>
         </td>
+        <% else %>
+          <td class="p-2"><%= Role.find(user.role).name %></td>   
+        <% end %>    
         <td class="p-2"><%= link_to 'Edit', edit_user_path(user.id) %></td>
     </tr>
   <% end %>

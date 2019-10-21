@@ -41,8 +41,9 @@
     <%= form.label :phone_number %>
     <%= form.text_field :phone_number, class: "form-control" %>
   </div>
-
-  <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] } %>
+  <div class="form-group">
+    <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] } %>
+  </div>
 
 
   <%= form.submit class: "btn btn-primary" %>

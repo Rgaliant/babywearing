@@ -2,8 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
-  before_action :authorize_admin
-  before_action :authorize_volunteer
+  before_action :authorize_user
   def index
     @users = User.order(params[:sort])
   end

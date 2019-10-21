@@ -12,13 +12,8 @@ class ApplicationController < ActionController::Base
    redirect_to(request.referrer || root_path)
  end
 
- def authorize_admin
-  return unless current_user.role != 1
-  redirect_to root_path, alert: 'Admins only!'
-  end
-
-  def authorize_volunteer
-    return unless !current_user.role != 2
+ def authorize_user
+    return unless current_user.role != 1 && current_user.role != 2
     redirect_to root_path, alert: 'Admins only!'
   end
 end
