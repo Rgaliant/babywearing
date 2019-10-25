@@ -9,8 +9,9 @@ RSpec.describe "User" do
 
   scenario "should allow user who is an admin to see list of users" do
     sign_in admin
-    visit users_url
-    expect(page).to have_content "User Listing"
+    visit root_url
+    click_on 'VIEW MEMBERS'
+    expect(page).to have_content 'User Listing'
   end
 
   scenario "should allow user who is a volunteer to see list of users" do
@@ -19,10 +20,10 @@ RSpec.describe "User" do
     expect(page).to have_content "User Listing"
   end
 
-  scenario "should not allow user who is not a volunteer or admin to see list of users" do
+  scenario "should not allow a member to see a list of users" do
     sign_in member
     visit users_url
-    expect(page).to have_content "Sorry, you aren't allowed to do that."
+    expect(page).not_to have_content 'User Listing'
   end
 
   scenario "should allow user who is an admin to export list of users" do
