@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
   resources :carriers
   resources :photos, only: :destroy
+  resources :users, :only => [:edit, :update]
   get 'home/index'
 
   resources :categories
