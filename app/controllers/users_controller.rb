@@ -3,6 +3,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
   before_action :authorize_user
+  after_action :assign_default_role, only: [:create]
+
   def index
     @users = User.order(params[:sort])
   end
@@ -12,6 +14,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.add_role params[:role]
     if @user.save
       redirect_to '/users'
     else
@@ -24,6 +27,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      @user.add_role params[:role]
       redirect_to '/users'
     else
       render 'edit'
@@ -39,6 +43,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def assign_default_role
+    set_user
+    @user.add_role(:member) if @user.role == 0
   end
 
   def user_params

@@ -19,8 +19,8 @@
         <td class="p-2"><%= user.last_name %></td>
         <% if user_is_admin(current_user) %>
         <td class="p-2">
-          <%= form_with model: user, local: true do |form| %>
-            <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] }, onchange: "this.form.submit();" %>          
+          <%= form_with model: user, local: true, name: "switch_car" do |form| %>
+            <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] }, {}, onchange: "this.form.submit()" %>          
           <% end %>
         </td>
         <% else %>

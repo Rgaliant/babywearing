@@ -9,13 +9,9 @@ module UsersHelper
 
   def user_can_add_new_member(user)
     user.has_role?(:admin) || user.has_role?(:volunteer)
-  end
-  
+  end 
+
   def user_is_admin(user)
     user.has_role?(:admin)
-  end
-
-  def user_can_add_new_member(user)
-    user.has_role?(:admin) || user.has_role?(:volunteer)
-  end 
+  end	 
 end
