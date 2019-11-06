@@ -16,7 +16,7 @@ class MembershipTypesController < ApplicationController
 
   # GET /membership_types/new
   def new
-    @membership_type = MembershipType.new
+    @membership_type = authorize MembershipType.new
   end
 
   # GET /membership_types/1/edit
@@ -26,7 +26,7 @@ class MembershipTypesController < ApplicationController
   # POST /membership_types
   # POST /membership_types.json
   def create
-    @membership_type = MembershipType.new(membership_type_params)
+    @membership_type = authorize MembershipType.new(membership_type_params)
 
     respond_to do |format|
       if @membership_type.save
@@ -42,6 +42,8 @@ class MembershipTypesController < ApplicationController
   # PATCH/PUT /membership_types/1
   # PATCH/PUT /membership_types/1.json
   def update
+    authorize @membership_type
+
     respond_to do |format|
       if @membership_type.update(membership_type_params)
         format.html { redirect_to @membership_type, notice: 'Membership type was successfully updated.' }
@@ -56,21 +58,25 @@ class MembershipTypesController < ApplicationController
   # DELETE /membership_types/1
   # DELETE /membership_types/1.json
   def destroy
-    @membership_type.destroy
-    respond_to do |format|
-      format.html { redirect_to membership_types_url, notice: 'Membership type was successfully destroyed.' }
-      format.json { head :no_content }
+    authorize @membership_type
+
+    if @membership_type.destroy
+      respond_to do |format|
+        format.html { redirect_to membership_types_url, alert: 'Membership type was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership_type
-      @membership_type = MembershipType.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def membership_type_params
-      params.require(:membership_type).permit(:name, :fee_cents, :duration_days, :number_of_items, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership_type
+    @membership_type = MembershipType.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def membership_type_params
+    params.require(:membership_type).permit(:name, :fee_cents, :duration_days, :number_of_items, :description)
+  end
 end

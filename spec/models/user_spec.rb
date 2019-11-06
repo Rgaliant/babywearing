@@ -3,11 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  describe "Associations" do
-    it "should have a role" do
-      test_user = User.reflect_on_association(:roles)
-      expect(test_user.macro).to eq(:has_and_belongs_to_many)
+  let(:member) { users(:member) }
+  let(:admin) { users(:admin) }
+
+  context 'Associations' do
+    it 'is a member' do
+      expect(member).to have_role(:member)
     end
+  end
 
     it 'should be a member' do
       user = User.create!(
@@ -21,8 +24,24 @@ RSpec.describe User do
         postal_code: "30030",
         phone_number: "909-851-9806"
       )
+    end
+    
+  context 'Users can be activated and deactivated' do
+    it 'defaults to activated' do
+      expect(member).not_to be_deactivated
+      expect(member).to be_activated
+    end
 
-      expect(user.has_role?(:member)).to be_truthy
+    it 'can be deactivated' do
+      member.deactivate
+      expect(member).to be_deactivated
+      expect(member).not_to be_activated
+    end
+
+    it 'can be reactivated' do
+      member.activate
+      expect(member).not_to be_deactivated
+      expect(member).to be_activated
     end
   end
 end

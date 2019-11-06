@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
-
+module Users
+  class RegistrationsController < Devise::RegistrationsController
     private
 
     def sign_up_params
@@ -17,4 +17,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
                                    :street_address, :street_address_second,
                                    :city, :state, :postal_code, :phone_number)
     end
+  end
 end
