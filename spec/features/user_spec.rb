@@ -16,7 +16,8 @@ RSpec.describe "User" do
 
   scenario "should allow user who is a volunteer to see list of users" do
     sign_in volunteer
-    visit users_url
+    visit root_url
+    click_on 'VIEW MEMBERS'
     expect(page).to have_content "User Listing"
   end
 

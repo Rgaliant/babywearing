@@ -45,7 +45,6 @@
     <%= form.select :role, Role.all.collect {|p| [ p.name, p.id ] } %>          
   </div>
   <div class="form-group">
-    <%= form.select :deactivated_at, "activate", "deactivate"%>
 
   <%= form.submit class: "btn btn-primary" %>
 <% end %>

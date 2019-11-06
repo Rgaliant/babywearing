@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
   def assign_default_role
     set_user
-    @user.add_role(:member) if @user.role == 0
+    @user.add_role(:member) if @user.roles.count == 0
   end
 
   def user_params

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
  end
 
  def authorize_user
-    return unless current_user.role != 1 && current_user.role != 2
+    return unless !current_user.has_role?(:admin) && !current_user.has_role?(:volunteer)
     redirect_to root_path, alert: 'Admins only!'
   end
 end
