@@ -1,46 +1,46 @@
 user:
-  email: "hello@test.com"
+  email: 'hello@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
-  first_name: "Pineapple"
-  last_name: "Pop"
-  street_address: "123 main street"
-  city: "fairfax"
-  state: "VA"
-  postal_code: "22032"
-  phone_number: "18888888888"
+  first_name: 'Pineapple'
+  last_name: 'Pop'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
 
 volunteer:
-  email: "volunteer@test.com"
+  email: 'volunteer@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
-  first_name: "Volunteer"
-  last_name: "Person"
-  street_address: "123 main street"
-  city: "fairfax"
-  state: "VA"
-  postal_code: "22032"
-  phone_number: "18888888888"
-  roles: volunteer
+  first_name: 'Volunteer'
+  last_name: 'Person'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  role: volunteer
 
 admin:
-  email: "admin@test.com"
+  email: 'admin@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
-  first_name: "Admin"
-  last_name: "User"
-  street_address: "123 main street"
-  city: "fairfax"
-  state: "VA"
-  postal_code: "22032"
-  phone_number: "18888888888"
-  roles: admin
+  first_name: 'Admin'
+  last_name: 'User'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  role: admin
 
 member:
-  email: "member@test.com"
+  email: 'member@test.com'
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
-  first_name: "Memebr"
-  last_name: "Bember"
-  street_address: "123 main street"
-  city: "fairfax"
-  state: "VA"
-  postal_code: "22032"
-  phone_number: "18888888888"
-  roles: member
+  first_name: 'Memebr'
+  last_name: 'Bember'
+  street_address: '123 main street'
+  city: 'fairfax'
+  state: 'VA'
+  postal_code: '22032'
+  phone_number: '18888888888'
+  role: member

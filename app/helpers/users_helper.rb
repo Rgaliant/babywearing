@@ -2,16 +2,18 @@
 
 module UsersHelper
   def user_initials(user)
-    first_initial = user.first_name[0]
-    last_initial = user.last_name[0]
-    user_initials = `#{first_initial}#{last_initial}`
+    user.name.initials
   end
 
   def user_can_add_new_member(user)
-    user.has_role?(:admin) || user.has_role?(:volunteer)
-  end 
+    user.admin? || user.volunteer?
+  end
 
   def user_is_admin(user)
-    user.has_role?(:admin)
-  end	 
+    user.admin?
+  end
+
+  def user_roles_select
+    User.roles.keys.map { |role| [role.humanize, role] }
+  end
 end
