@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :authorize_user
 
   def index
-    @users = User.order(params[:sort])
+    @users = User.all
 
     respond_to do |format|
       format.html
