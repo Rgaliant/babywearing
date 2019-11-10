@@ -9,10 +9,6 @@ module UsersHelper
     user.admin? || user.volunteer?
   end
 
-  def user_is_admin(user)
-    user.admin?
-  end
-
   def user_roles_select
     User.roles.keys.map { |role| [role.humanize, role] }
   end
