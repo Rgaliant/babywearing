@@ -22,13 +22,14 @@ class ApplicationController < ActionController::Base
 
   private
 
- def user_not_authorized(exception)
-   flash[:error] = "Sorry, you aren't allowed to do that. You've been redirected to your previous page instead."
-   redirect_to(request.referrer || root_path)
- end
+  def user_not_authorized(_exception)
+    flash[:error] = "Sorry, you aren't allowed to do that. You've been redirected to your previous page instead."
+    redirect_to(request.referrer || root_path)
+  end
 
- def authorize_user
+  def authorize_user
     return unless !current_user.admin? && !current_user.volunteer?
+
     redirect_to root_path, alert: 'Admins only!'
   end
 end
